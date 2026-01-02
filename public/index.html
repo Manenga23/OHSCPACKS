@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OHSC Compliance Pack Builder</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>OHSC Compliance Pack Builder</h1>
+    <p class="muted">Build an inspection-ready documentation pack (English or Afrikaans) with your practice details.</p>
+
+    <section class="card">
+      <h2>1) Choose language</h2>
+      <div class="row">
+        <button id="btnEn" class="btn">English</button>
+        <button id="btnAf" class="btn">Afrikaans</button>
+      </div>
+      <p id="langStatus" class="muted"></p>
+    </section>
+
+    <section class="card">
+      <h2>2) Practice details</h2>
+      <form id="form">
+        <div class="grid">
+          <label>Practice name<input name="PRACTICE_NAME" value="Barkly Medical Practice" required></label>
+          <label>Practice number<input name="PRACTICE_NUMBER"></label>
+          <label>Physical address<input name="PHYSICAL_ADDRESS" required></label>
+          <label>City<input name="CITY" required></label>
+          <label>Province<input name="PROVINCE" required></label>
+          <label>Phone<input name="PHONE"></label>
+          <label>WhatsApp<input name="WHATSAPP"></label>
+          <label>Email<input name="EMAIL"></label>
+          <label>Responsible person name<input name="RESPONSIBLE_PERSON_NAME" required></label>
+          <label>Responsible person role<input name="RESPONSIBLE_PERSON_ROLE" value="Responsible Person"></label>
+          <label>Practice manager name<input name="PRACTICE_MANAGER_NAME"></label>
+          <label>IPC lead<input name="IPC_LEAD_NAME"></label>
+          <label>Waste lead<input name="WASTE_LEAD_NAME"></label>
+          <label>Records/POPIA lead<input name="RECORDS_LEAD_NAME"></label>
+          <label>Emergency lead<input name="EMERGENCY_LEAD_NAME"></label>
+        </div>
+        <div class="row">
+          <label class="inline"><input type="checkbox" name="HAS_VACCINES"> Vaccines stored (include Cold Chain)</label>
+        </div>
+        <div class="row">
+          <label class="inline"><input type="checkbox" name="FULL_ACCESS"> Full pack (admin toggle for now)</label>
+        </div>
+        <div class="row">
+          <button type="button" id="saveBtn" class="btn secondary">Save</button>
+          <button type="button" id="downloadBtn" class="btn primary">Download ZIP</button>
+        </div>
+        <p class="muted">Demo mode: only IPC SOP + Cleaning Log unless “Full pack” is ticked (for now). Later this toggle will be replaced by PayFast/EFT access.</p>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Notes</h2>
+      <ul>
+        <li>Templates are currently Markdown + CSV (easy to edit). DOCX generation can be added later.</li>
+        <li>All documents include placeholders and version/review governance.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="../src/generator/fillTemplate.js"></script>
+  <script src="../src/generator/accessControl.js"></script>
+  <script src="../src/generator/generateZip.js"></script>
+  <script src="../src/ui/app.js"></script>
+</body>
+</html>
